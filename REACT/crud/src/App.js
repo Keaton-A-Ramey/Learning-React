@@ -39,8 +39,12 @@ function App() {
     setTodoList(todoList.filter((task) => task.id !== taskID));
   }
 
-  const taskComplete = (props) => {
-    
+  const completeTask = (id) => {
+    setTodoList(
+      todoList.map((task) => {
+        return task.id === id ? {...task, completed : !task.completed} : task; 
+      })
+    );
   }
 
   return (
@@ -51,7 +55,15 @@ function App() {
       </div>
       <div className="taskList">
         {todoList.map((task) =>{
-          return <Task taskName = {task.taskName} id={task.id} deleteTask={deleteTask}/>;
+          return (
+          <Task 
+            taskName = {task.taskName} 
+            id={task.id} 
+            completed = {task.completed}
+            deleteTask={deleteTask}
+            completeTask={completeTask} 
+          />
+          );
         })}
       </div>
     </div>

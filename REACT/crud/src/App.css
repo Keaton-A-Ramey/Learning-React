@@ -18,7 +18,7 @@ body {
 }
 
 .addTask {
-  height: 30vw;
+  height: 13vw;
   background: dodgerblue;
   width: 100%;
   display: flex;
@@ -72,7 +72,23 @@ body {
 
 .task button {
   width: auto;
-  height: 20px;
+  height: 2vw;
   margin-left: 20px;
   text-align: center;
+}
+
+.addTask input {
+  height : 2vw;
+  width : auto;
+  font-size: 200%;
+  margin-right: 25px;
+}
+
+.addTask button {
+  height : 2.25vw;
+  width : auto;
+  font-size: 200%;
+  margin-right: 25px;
+  text-align: center;
+  font-weight: bold;
 }
