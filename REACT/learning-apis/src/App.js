@@ -1,4 +1,5 @@
 import './App.css';
+import Axios from "axios";
 
 // Used to fetch data from API
 fetch("https://catfact.ninja/fact")
@@ -6,6 +7,11 @@ fetch("https://catfact.ninja/fact")
   .then((data) => {
 
 });
+
+// Alternate fetch using axios
+Axios.get("https://catfact.ninja/fact").then((res) => {
+  console.log(res.data);
+})
 
 function App() {
 
