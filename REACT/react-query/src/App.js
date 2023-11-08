@@ -4,6 +4,7 @@ import {Menu} from './pages/Menu';
 import {Contact} from './pages/Contact';
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import { useState, createContext } from 'react';
+import { Query, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export const AppContext = createContext();
 
@@ -53,14 +54,34 @@ function App() {
   --> When you want to have a group of components that have access to the same data, you can create
   a context for that group. You can even have global context
 
+
+  WHAT IS REACT QUERY??
+
+  -> Can't we just use useEffect/fetching?
+
+  Well, to do that, we have to remove strict mode. It's not an ideal way of getting data from APIs. 
+  Its there to enforce best practices...
+  --> We really shouldn't do this, we're gonna learn a better way now
+  --> Query facilitates data queries much better, makes all of it easier, this is the way
+
+  Have to install: npm install @tanstack/react-query
+
+  You wanna set up the query at the highest level you wanna make the request in.
+  Gonna put it in app because we want access everywhere
+
   */
 
   const [username, setUsername] = useState("Keaton");
 
-  //When you make that provider below, you have to specify what you're gonna provide to everything inside.
+  // You can pass a client object, but that's more advanced
+  // Using this client, we can frame the components who will have access like we did w router
+  const client = new QueryClient();
 
+  //When you make that provider (routes thing) below, you have to specify what you're gonna provide to everything inside.
+  
   return (
     <div className="App">
+    <QueryClientProvider client={client}>
     <AppContext.Provider value={{username, setUsername}}>
     <Router> 
         <div>
@@ -77,6 +98,7 @@ function App() {
         </Routes>
       </Router>
       </AppContext.Provider>
+      </QueryClientProvider>
     </div>
   );
 
